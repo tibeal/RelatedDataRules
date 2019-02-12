@@ -58,7 +58,7 @@ public class ChallengeViewCtrl {
             Map<String,Schema.SObjectField> criterionFields = Schema.SObjectType.Criterion__c.fields.getMap();
             Map<String,Schema.SObjectField> criterionGroupFields = Schema.SObjectType.CriterionGroup__c.fields.getMap();
 
-            Map<Integer, SObject> criteriaByOrder = new Map<Integer, SObject>();
+            Map<Integer, Object> criteriaByOrder = new Map<Integer, Object>();
 
             String query = 'SELECT Id, Name, ' +
                 '( SELECT ' + String.escapeSingleQuotes(String.join(new List<String>(criterionFields.keySet()), ',')) + ' FROM MissionCriteria__r ), ' +
