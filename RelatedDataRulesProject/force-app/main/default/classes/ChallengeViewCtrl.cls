@@ -51,4 +51,46 @@ public class ChallengeViewCtrl {
             throw new AuraHandledException(e.getMessage());
         }
     }
+
+    @AuraEnabled
+    public static Map<Integer, SObject> getMissionCriteria(Id missionId){
+        try{
+            Map<String,Schema.SObjectField> criterionFields = Schema.SObjectType.Criterion__c.fields.getMap();
+            Map<String,Schema.SObjectField> criterionGroupFields = Schema.SObjectType.CriterionGroup__c.fields.getMap();
+
+            Map<Integer, SObject> criteriaByOrder = new Map<Integer, SObject>();
+
+            String query = 'SELECT Id, Name, ' +
+                '( SELECT ' + String.escapeSingleQuotes(String.join(new List<String>(criterionFields.keySet()), ',')) + ' FROM MissionCriteria__r ), ' +
+                '( SELECT ' + String.escapeSingleQuotes(String.join(new List<String>(criterionGroupFields.keySet()), ',')) + ' FROM Criteria_Group__r ) ' +
+                ' FROM Mission__c WHERE Mission__c =: missionId';
+
+            List<Mission__c> missions = Database.query(query);
+
+            if ( !missions[0].MissionCriteria__r.isEmpty() ) {
+                for (Criterion__c c : missions[0].MissionCriteria__r) {
+                    criteriaByOrder.put((Integer)c.Order__c, c);
+                }
+            }
+
+            if ( !missions[0].Criteria_Group__r.isEmpty() ) {
+                query = 'SELECT ' + String.escapeSingleQuotes(String.join(new List<String>(criterionGroupFields.keySet()), ',')) + ', ' +
+                '( SELECT ' + String.escapeSingleQuotes(String.join(new List<String>(criterionFields.keySet()), ',')) + ' FROM Criteria__r ) ' +
+                ' FROM CriterionGroup__c WHERE Mission__c =: missionId ORDER BY Order__c';
+
+                Map<Id, CriterionGroup__c> cgMap = new Map<Id, CriterionGroup__c>( (List<CriterionGroup__c>) Database.query(query) );
+
+                for (CriterionGroup__c cg : missions[0].Criteria_Group__r) {
+                    criteriaByOrder.put((Integer)cg.Order__c, cgMap.get(cg.Id));
+                }
+            }
+
+            return criteriaByOrder;
+
+        } catch (DmlException e) {
+            throw new AuraHandledException(e.getDmlMessage(0));
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
 }
