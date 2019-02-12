@@ -38,13 +38,7 @@
 
             var mission = event.getParam('mission');
             
-            var missionCriteria = component.find('mission-criteria');
-
-            if ( missionCriteria.length > 0 ) {
-                missionCriteria = missionCriteria[0];
-            }
-            
-            missionCriteria.set('v.mission', mission);
+            component.set('v.mission', mission);
             
         } catch(e) {
             console.log(e);

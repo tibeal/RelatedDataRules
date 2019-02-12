@@ -53,7 +53,7 @@ public class ChallengeViewCtrl {
     }
 
     @AuraEnabled
-    public static Map<Integer, SObject> getMissionCriteria(Id missionId){
+    public static Map<Integer, Object> getMissionCriteria(Id missionId){
         try{
             Map<String,Schema.SObjectField> criterionFields = Schema.SObjectType.Criterion__c.fields.getMap();
             Map<String,Schema.SObjectField> criterionGroupFields = Schema.SObjectType.CriterionGroup__c.fields.getMap();
@@ -63,13 +63,13 @@ public class ChallengeViewCtrl {
             String query = 'SELECT Id, Name, ' +
                 '( SELECT ' + String.escapeSingleQuotes(String.join(new List<String>(criterionFields.keySet()), ',')) + ' FROM MissionCriteria__r ), ' +
                 '( SELECT ' + String.escapeSingleQuotes(String.join(new List<String>(criterionGroupFields.keySet()), ',')) + ' FROM Criteria_Group__r ) ' +
-                ' FROM Mission__c WHERE Mission__c =: missionId';
+                ' FROM Mission__c WHERE Id =: missionId';
 
             List<Mission__c> missions = Database.query(query);
 
             if ( !missions[0].MissionCriteria__r.isEmpty() ) {
                 for (Criterion__c c : missions[0].MissionCriteria__r) {
-                    criteriaByOrder.put((Integer)c.Order__c, c);
+                    criteriaByOrder.put((Integer)c.Order__c, (Object) c);
                 }
             }
 
@@ -81,7 +81,7 @@ public class ChallengeViewCtrl {
                 Map<Id, CriterionGroup__c> cgMap = new Map<Id, CriterionGroup__c>( (List<CriterionGroup__c>) Database.query(query) );
 
                 for (CriterionGroup__c cg : missions[0].Criteria_Group__r) {
-                    criteriaByOrder.put((Integer)cg.Order__c, cgMap.get(cg.Id));
+                    criteriaByOrder.put((Integer)cg.Order__c, (Object) cgMap.get(cg.Id));
                 }
             }
 

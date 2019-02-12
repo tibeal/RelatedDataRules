@@ -1,6 +1,7 @@
 <aura:component controller="ChallengeViewCtrl">
     <aura:attribute type="sObject[]" name="challenges"/>
     <aura:attribute type="Object" name="record"/>
+    <aura:attribute type="Object" name="mission"/>
     <aura:attribute type="Boolean" name="showDetails"/>
     <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
     
@@ -18,8 +19,11 @@
     </aura:if>
     
     
+    
+    <aura:if isTrue="{!v.mission.Id != undefined}">
         
-    <c:MissionCriteria aura:id="mission-criteria"/>
+        <c:MissionCriteria mission="{!v.mission}"/>
+    </aura:if>
     
 
 </aura:component>	

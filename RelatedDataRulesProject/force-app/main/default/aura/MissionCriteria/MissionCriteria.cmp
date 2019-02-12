@@ -1,5 +1,9 @@
 <aura:component controller="ChallengeViewCtrl">
     <aura:attribute type="sObject" name="mission"/>
+    <aura:attribute type="sObject[]" name="criteria"/>
+
+    <!-- handlers-->
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }"/>
 
     <aura:if isTrue="{!v.mission.Id != undefined}">
         
