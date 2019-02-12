@@ -1,0 +1,25 @@
+<aura:component controller="ChallengeViewCtrl">
+    <aura:attribute type="sObject[]" name="challenges"/>
+    <aura:attribute type="Object" name="record"/>
+    <aura:attribute type="Boolean" name="showDetails"/>
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    
+    <aura:handler event="c:SelectChallenge" name="selectChallenge" action="{!c.challengeSelected}"/>
+    <aura:handler event="c:SelectMission" name="selectMission" action="{!c.missionSelected}"/>
+
+    <c:ChallengeHeader challenges="{!v.challenges}" />
+
+    
+    <c:ChallengeDetails aura:id="challenge-details"/>
+
+    <aura:if isTrue="{!v.record.Id != undefined}">
+        
+        <c:ChallengeMissions record="{!v.record}"/>
+    </aura:if>
+    
+    
+        
+    <c:MissionCriteria aura:id="mission-criteria"/>
+    
+
+</aura:component>	

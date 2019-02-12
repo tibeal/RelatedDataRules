@@ -1,0 +1,20 @@
+<aura:component controller="ChallengeViewCtrl">
+    <aura:attribute type="sObject" name="mission"/>
+
+    <div class="criteria-container">
+        <div class="page-section page-header">
+            <h3 class="slds-text-heading_small slds-p-bottom_medium slds-p-left_medium slds-p-top_medium"><b>Criteria</b></h3>
+        </div>
+        <lightning:layout class="slds-page-header slds-page-header_object-home slds-border_bottom">
+                <!-- <lightning:layoutItem>
+                    <lightning:datatable
+                        columns="{! v.columns }"
+                        data="{! v.data }"
+                        keyField="Id"
+                        maxRowSelection="{! v.maxRowSelection }"
+                        onrowselection="{! c.updateSelectedMission }"/>
+                </lightning:layoutItem> -->
+        </lightning:layout>
+    </div>
+    {!v.mission.Name}
+</aura:component>	

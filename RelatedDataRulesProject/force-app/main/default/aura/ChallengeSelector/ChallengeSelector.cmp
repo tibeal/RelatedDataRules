@@ -1,0 +1,16 @@
+<aura:component>
+    <aura:attribute type="sObject[]" name="challenges"/>
+
+    <aura:registerEvent name="selectChallenge" type="c:SelectChallenge"/>
+
+    <aura:if isTrue="{!and(v.challenges, v.challenges != null)}">
+        <lightning:layoutItem>
+            <lightning:select aura:id="challenge-selector" name="challengeSelector" label="Challenges" title="Select a Challenge" onchange="{!c.handleChallengeChange}">
+                <option aura:id="challenge-record" >Select an Option</option>
+                <aura:iteration items="{!v.challenges}" var="challenge">
+                    <option aura:id="challenge-record" value="{!challenge.Id}">{!challenge.Name + ' - ' + challenge.FieloPLT__Status__c}</option>
+                </aura:iteration>
+            </lightning:select>
+        </lightning:layoutItem>
+    </aura:if>
+</aura:component>	

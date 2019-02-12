@@ -1,0 +1,19 @@
+<aura:component >
+    <aura:attribute type="sObject[]" name="challenges" />
+    <!-- PAGE HEADER -->
+    <lightning:layout class="slds-page-header slds-page-header_object-home">
+        <lightning:layoutItem >
+            <lightning:icon iconName="action:goal" alternativeText="Challenge View"/>
+        </lightning:layoutItem>
+        <lightning:layoutItem padding="horizontal-small">
+            <div class="page-section page-header">
+                <h1 class="slds-text-heading_label">Challenge</h1>
+                <h2 class="slds-text-heading_medium">View</h2>
+            </div>
+        </lightning:layoutItem>
+        <lightning:layoutItem padding="horizontal-small">
+            <c:ChallengeSelector challenges="{!v.challenges}"/>
+        </lightning:layoutItem>
+    </lightning:layout>
+    <!-- / PAGE HEADER -->
+</aura:component>

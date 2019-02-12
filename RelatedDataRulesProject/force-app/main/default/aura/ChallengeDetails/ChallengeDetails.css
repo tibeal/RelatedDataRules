@@ -1,0 +1,12 @@
+.THIS .label {
+    font-weight: bold;
+    display: block;
+}
+
+.THIS .challengeproperty {
+    margin-bottom: 3px;
+}
+
+.THIS.record-details .slds-icon_container{
+    background-color: cornflowerblue;
+}
