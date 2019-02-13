@@ -23,6 +23,7 @@
             }
             
             challengeDetails.set('v.recordId', challenge.Id);
+            challengeDetails.set('v.record', {});
             challengeDetails.set('v.record', challenge);
             challengeDetails.set('v.simpleRecord', challenge);
             
@@ -38,6 +39,7 @@
 
             var mission = event.getParam('mission');
             
+            component.set('v.mission', {});
             component.set('v.mission', mission);
             
         } catch(e) {

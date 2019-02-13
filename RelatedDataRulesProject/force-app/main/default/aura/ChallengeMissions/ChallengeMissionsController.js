@@ -2,7 +2,7 @@
     doInit : function(component, event, helper) {
         try{
             helper.getColumns(component);
-            helper.getMissions(component);
+            helper.getObjectDescribes(component);
         } catch(e) {
             console.log(e);
         }

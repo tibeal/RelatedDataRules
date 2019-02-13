@@ -1,2 +1,8 @@
-.THIS {
+.THIS .label {
+    font-weight: bold;
+    display: block;
+}
+
+.THIS .missionproperty {
+    margin-bottom: 3px;
 }

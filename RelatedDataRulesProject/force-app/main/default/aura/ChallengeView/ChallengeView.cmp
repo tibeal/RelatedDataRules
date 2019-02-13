@@ -21,7 +21,6 @@
     
     
     <aura:if isTrue="{!v.mission.Id != undefined}">
-        
         <c:MissionCriteria mission="{!v.mission}"/>
     </aura:if>
     
