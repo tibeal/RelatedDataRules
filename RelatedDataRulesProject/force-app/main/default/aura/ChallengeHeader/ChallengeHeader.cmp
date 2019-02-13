@@ -3,7 +3,8 @@
     <!-- PAGE HEADER -->
     <lightning:layout class="slds-page-header slds-page-header_object-home">
         <lightning:layoutItem >
-            <lightning:icon iconName="action:goal" alternativeText="Challenge View"/>
+            <!-- <lightning:icon iconName="action:goal" alternativeText="Challenge View"/> -->
+            <img aura:id="fieloImage" class="slds-size_3-of-3 slds-align_absolute-center" src="https://files.readme.io/9d26c05-small-fielo_F_icon_-_4_color.png" alt="Fielo"/>
         </lightning:layoutItem>
         <lightning:layoutItem padding="horizontal-small">
             <div class="page-section page-header">
