@@ -90,14 +90,14 @@
                     
                     if (c.FieloPLT__Mode__c == 'COUNT') {
                         mode = c.FieloPLT__Mode__c +
-                        ' "' + objectDescribes[missionId].describes[c.FieloPLT__RelatedList__c].label + '"';
+                        '("' + objectDescribes[missionId].describes[c.FieloPLT__RelatedList__c].label + '"';
                     } else {
                         mode = c.FieloPLT__Mode__c +
                         '("' + objectDescribes[missionId].describes[c.FieloPLT__RelatedList__c].label +
-                            '.' + objectDescribes[missionId].describes[c.FieloPLT__RelatedList__c].fields[c.FieloPLT__Field__c].label + '")';
+                            '.' + objectDescribes[missionId].describes[c.FieloPLT__RelatedList__c].fields[c.FieloPLT__Field__c].label + '"';
                     }
 
-                    criteriaText = mode + ' WHEN (' + criteriaText + ') ' + c.FieloPLT__Operator__c + ' "' + c.FieloPLT__Value__c + '"';
+                    criteriaText = mode + ' WHEN ' + criteriaText + ') ' + c.FieloPLT__Operator__c + ' "' + c.FieloPLT__Value__c + '"';
 
                     data.push({
                         'Order__c': String( c.FieloPLT__Order__c ),
