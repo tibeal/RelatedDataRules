@@ -89,8 +89,10 @@
             var missionId = m.Id;
             var missionObject = objectDescribes[missionId].object;
             var missionObjectsDescribes = objectDescribes[missionId].describes;
-
-            m.FieloPLT__FieldToAggregate__c = missionObjectsDescribes[missionObject].label + '.' + missionObjectsDescribes[missionObject].fields[m.FieloPLT__FieldToAggregate__c].label;
+            
+            if (m.FieloPLT__FieldToAggregate__c) {
+                m.FieloPLT__FieldToAggregate__c = missionObjectsDescribes[missionObject].label + '.' + missionObjectsDescribes[missionObject].fields[m.FieloPLT__FieldToAggregate__c].label;
+            }
             
             m.FieloPLT__ObjectiveValue__c = String(m.FieloPLT__ObjectiveValue__c);
         });
